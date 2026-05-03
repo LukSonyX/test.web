@@ -1,14 +1,5 @@
 [
   {
-    "id": "1710001",
-    "nazev": "BMW M4 Competition",
-    "cena": "2 150 000 Kč",
-    "rok": "2022",
-    "najeto": "15 000 km",
-    "palivo": "Benzín",
-    "obrazek": "https://images.unsplash.com/photo-1570356528233-b442cf2de345?q=80&w=766&auto=format&fit=crop"
-  },
-  {
     "id": "1710002",
     "nazev": "Audi RS6 Avant",
     "cena": "2 890 000 Kč",
