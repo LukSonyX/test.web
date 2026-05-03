@@ -20,7 +20,7 @@
                 <a href="index.html">Domů</a>
                 <a href="vozy.html" class="active">Vozy na Prodej</a>
                 <a href="sluzby.html">Služby</a>
-                <a href="o-nas.html">O Nás</a>
+                <a href="onas.html">O Nás</a>
                 <a href="kontakt.html">Kontakt</a>
             </nav>
         </div>
@@ -35,9 +35,7 @@
         </section>
 
         <section class="car-grid-section">
-            <!-- TADY JE ZMĚNA: Přidali jsme id="car-list" a smazali auta uvnitř -->
             <div class="container car-grid" id="car-list">
-                <!-- Auta se sem vygenerují automaticky pomocí JavaScriptu -->
             </div>
         </section>
     </main>
@@ -48,19 +46,15 @@
         </div>
     </footer>
 
-    <!-- SKRIPT PRO NAČTENÍ AUT Z JSON SOUBORU -->
     <script>
-        // Funkce pro načtení a vykreslení aut
         async function nactiAuta() {
             try {
-                // Sáhne si pro data do složky data/auta.json
                 const response = await fetch('data/auta.json');
                 const auta = await response.json();
                 
                 const kontejner = document.getElementById('car-list');
-                kontejner.innerHTML = ''; // Vyčistíme kontejner před vložením
+                kontejner.innerHTML = '';
 
-                // Projde každé auto v JSONu a vytvoří pro něj HTML kartičku
                 auta.forEach(auto => {
                     const htmlKarty = `
                         <div class="car-card">
@@ -77,7 +71,6 @@
                             </div>
                         </div>
                     `;
-                    // Přidá kartičku do kontejneru na stránce
                     kontejner.innerHTML += htmlKarty;
                 });
             } catch (error) {
@@ -86,7 +79,6 @@
             }
         }
 
-        // Spustíme funkci po načtení stránky
         nactiAuta();
     </script>
 </body>

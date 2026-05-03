@@ -234,7 +234,6 @@ nav a:hover, nav a.active {
     font-size: 14px;
 }
 
-/* --- PATIČKA --- */
 footer {
     background-color: var(--dark-bg);
     color: #AAA;
@@ -479,14 +478,12 @@ footer {
     color: #999;
 }
 
-/* Responzivita na mobily */
 @media (max-width: 768px) {
     .contact-cards-grid {
         grid-template-columns: 1fr;
     }
 }
 
-/* --- STRÁNKA: SLUŽBY --- */
 .services-detail-section {
     padding: 60px 20px;
 }
@@ -541,7 +538,7 @@ footer {
 }
 
 .service-list i {
-    color: #28a745; /* Zelená fajfka */
+    color: #28a745;
 }
 
 .service-divider {
@@ -580,7 +577,6 @@ footer {
     transform: translateY(-2px);
 }
 
-/* --- STRÁNKA: O NÁS --- */
 .about-split-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -654,14 +650,13 @@ footer {
     line-height: 1.6;
 }
 
-/* --- RESPONZIVITA PRO NOVÉ STRÁNKY --- */
 @media (max-width: 992px) {
     .about-split-section {
         grid-template-columns: 1fr;
         gap: 40px;
     }
     .about-split-image {
-        order: -1; /* Fotka půjde nad text na mobilu */
+        order: -1;
     }
     .values-grid {
         grid-template-columns: repeat(2, 1fr);
