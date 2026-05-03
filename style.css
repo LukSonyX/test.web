@@ -401,3 +401,279 @@ footer {
     display: block;
     width: 100%;
 }
+
+.contact-section {
+    padding: 80px 20px;
+}
+
+.about-centered {
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+    text-align: center;
+}
+
+.about-centered h2 {
+    font-size: 32px;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.about-centered p {
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.contact-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-card {
+    background: var(--white);
+    padding: 40px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+.contact-card i {
+    font-size: 36px;
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+}
+
+.contact-card h3 {
+    font-size: 20px;
+    color: #111;
+    margin-bottom: 15px;
+}
+
+.contact-card p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.contact-link {
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 5px;
+}
+
+.contact-link:hover {
+    color: #0056b3;
+}
+
+.small-text {
+    font-size: 14px;
+    color: #999;
+}
+
+/* Responzivita na mobily */
+@media (max-width: 768px) {
+    .contact-cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --- STRÁNKA: SLUŽBY --- */
+.services-detail-section {
+    padding: 60px 20px;
+}
+
+.service-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 40px 0;
+}
+
+.service-icon-large {
+    background-color: var(--light-bg);
+    width: 100px;
+    height: 100px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.service-icon-large i {
+    font-size: 40px;
+    color: var(--primary-blue);
+}
+
+.service-text h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.service-text p {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.service-list {
+    list-style: none;
+}
+
+.service-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #333;
+}
+
+.service-list i {
+    color: #28a745; /* Zelená fajfka */
+}
+
+.service-divider {
+    border: 0;
+    height: 1px;
+    background-color: #EEE;
+    margin: 0;
+}
+
+.cta-section {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    text-align: center;
+    padding: 80px 20px;
+    margin-top: 40px;
+}
+
+.cta-section h2 {
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+
+.cta-section p {
+    font-size: 18px;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.cta-section .btn-primary {
+    background-color: var(--white);
+    color: var(--primary-blue);
+}
+
+.cta-section .btn-primary:hover {
+    background-color: #F8F9FA;
+    transform: translateY(-2px);
+}
+
+/* --- STRÁNKA: O NÁS --- */
+.about-split-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    padding: 80px 20px;
+    align-items: center;
+}
+
+.about-split-text h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #111;
+}
+
+.about-split-text p {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.about-split-image img {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.core-values {
+    background-color: var(--light-bg);
+    padding: 80px 0;
+}
+
+.values-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.values-header h2 {
+    font-size: 32px;
+    color: #111;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.value-card {
+    background: var(--white);
+    padding: 40px 30px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.value-card i {
+    font-size: 40px;
+    color: var(--primary-blue);
+    margin-bottom: 25px;
+}
+
+.value-card h3 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.value-card p {
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+/* --- RESPONZIVITA PRO NOVÉ STRÁNKY --- */
+@media (max-width: 992px) {
+    .about-split-section {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .about-split-image {
+        order: -1; /* Fotka půjde nad text na mobilu */
+    }
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .service-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+}

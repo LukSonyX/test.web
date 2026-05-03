@@ -19,9 +19,9 @@
             <nav>
                 <a href="index.html">Domů</a>
                 <a href="vozy.html" class="active">Vozy na Prodej</a>
-                <a href="#">Služby</a>
-                <a href="#">O Nás</a>
-                <a href="#">Kontakt</a>
+                <a href="sluzby.html">Služby</a>
+                <a href="o-nas.html">O Nás</a>
+                <a href="kontakt.html">Kontakt</a>
             </nav>
         </div>
     </header>
@@ -35,50 +35,9 @@
         </section>
 
         <section class="car-grid-section">
-            <div class="container car-grid">
-                
-                <div class="car-card">
-                    <img src="https://images.unsplash.com/photo-1570356528233-b442cf2de345?q=80&w=766&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="BMW M4">
-                    <div class="car-info">
-                        <h3>BMW M4 Competition</h3>
-                        <div class="price">2 150 000 Kč</div>
-                        <ul class="specs">
-                            <li><i class="fa-regular fa-calendar"></i> 2022</li>
-                            <li><i class="fa-solid fa-gauge-high"></i> 15 000 km</li>
-                            <li><i class="fa-solid fa-gas-pump"></i> Benzín</li>
-                        </ul>
-                        <a href="#" class="btn btn-primary btn-block">Detail vozu</a>
-                    </div>
-                </div>
-
-                <div class="car-card">
-                    <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=600&q=80" alt="Audi RS6">
-                    <div class="car-info">
-                        <h3>Audi RS6 Avant</h3>
-                        <div class="price">2 890 000 Kč</div>
-                        <ul class="specs">
-                            <li><i class="fa-regular fa-calendar"></i> 2021</li>
-                            <li><i class="fa-solid fa-gauge-high"></i> 32 000 km</li>
-                            <li><i class="fa-solid fa-gas-pump"></i> Benzín</li>
-                        </ul>
-                        <a href="#" class="btn btn-primary btn-block">Detail vozu</a>
-                    </div>
-                </div>
-
-                <div class="car-card">
-                    <img src="https://images.unsplash.com/photo-1742414955049-d332bc45b51a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Porsche 911">
-                    <div class="car-info">
-                        <h3>Porsche 911 Carrera</h3>
-                        <div class="price">3 100 000 Kč</div>
-                        <ul class="specs">
-                            <li><i class="fa-regular fa-calendar"></i> 2023</li>
-                            <li><i class="fa-solid fa-gauge-high"></i> 5 000 km</li>
-                            <li><i class="fa-solid fa-gas-pump"></i> Benzín</li>
-                        </ul>
-                        <a href="#" class="btn btn-primary btn-block">Detail vozu</a>
-                    </div>
-                </div>
-
+            <!-- TADY JE ZMĚNA: Přidali jsme id="car-list" a smazali auta uvnitř -->
+            <div class="container car-grid" id="car-list">
+                <!-- Auta se sem vygenerují automaticky pomocí JavaScriptu -->
             </div>
         </section>
     </main>
@@ -89,5 +48,46 @@
         </div>
     </footer>
 
+    <!-- SKRIPT PRO NAČTENÍ AUT Z JSON SOUBORU -->
+    <script>
+        // Funkce pro načtení a vykreslení aut
+        async function nactiAuta() {
+            try {
+                // Sáhne si pro data do složky data/auta.json
+                const response = await fetch('data/auta.json');
+                const auta = await response.json();
+                
+                const kontejner = document.getElementById('car-list');
+                kontejner.innerHTML = ''; // Vyčistíme kontejner před vložením
+
+                // Projde každé auto v JSONu a vytvoří pro něj HTML kartičku
+                auta.forEach(auto => {
+                    const htmlKarty = `
+                        <div class="car-card">
+                            <img src="${auto.obrazek}" alt="${auto.nazev}">
+                            <div class="car-info">
+                                <h3>${auto.nazev}</h3>
+                                <div class="price">${auto.cena}</div>
+                                <ul class="specs">
+                                    <li><i class="fa-regular fa-calendar"></i> ${auto.rok}</li>
+                                    <li><i class="fa-solid fa-gauge-high"></i> ${auto.najeto}</li>
+                                    <li><i class="fa-solid fa-gas-pump"></i> ${auto.palivo}</li>
+                                </ul>
+                                <a href="#" class="btn btn-primary btn-block">Detail vozu</a>
+                            </div>
+                        </div>
+                    `;
+                    // Přidá kartičku do kontejneru na stránce
+                    kontejner.innerHTML += htmlKarty;
+                });
+            } catch (error) {
+                console.error("Nepodařilo se načíst auta:", error);
+                document.getElementById('car-list').innerHTML = '<p>Načítání nabídky vozů se nezdařilo. Zkuste to prosím později.</p>';
+            }
+        }
+
+        // Spustíme funkci po načtení stránky
+        nactiAuta();
+    </script>
 </body>
 </html>
