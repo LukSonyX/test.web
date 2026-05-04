@@ -672,3 +672,14 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    max-height: 40px; /* Tímto číslem si můžeš logo zvětšit nebo zmenšit */
+    width: auto;
+    display: block;
+}
