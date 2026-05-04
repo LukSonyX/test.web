@@ -40,10 +40,31 @@
     </main>
 
     <footer>
-        <div class="container footer-inner">
-            <p style="color: #666;">© 2026 Sky Cars. Všechna práva vyhrazena.</p>
+    <div class="container footer-inner">
+        <div class="footer-col">
+            <h4>Rychlé Odkazy</h4>
+            <ul>
+                <li><a href="index.html">Domů</a></li>
+                <li><a href="vozy.html">Vozy na Prodej</a></li>
+                <li><a href="sluzby.html">Služby</a></li>
+                <li><a href="o-nas.html">O Nás</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+            </ul>
         </div>
-    </footer>
+        <div class="footer-col">
+            <h4>SkyCars Praha s.r.o.</h4>
+            <ul class="contact-info">
+                <li><i class="fa-solid fa-phone"></i> +420 702 798 829</li>
+                <li><i class="fa-solid fa-location-dot"></i> Korunní 1065/107 Praha Vinohrady</li>
+                    <li><i class="fa-solid fa-envelope"></i> skycars@seznam.cz</li>
+                <li><i class="fa-solid fa-id-card"></i> IČO: 242 82 634</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container footer-bottom">
+        <p>© 2026 SkyCars Praha s.r.o. Všechna práva vyhrazena.</p>
+    </div>
+</footer>
 
     <script>
         async function nactiAuta() {
@@ -55,9 +76,11 @@
                 kontejner.innerHTML = '';
 
                 auta.forEach(auto => {
+                    const hlavniFotka = (auto.obrazky && auto.obrazky.length > 0) ? auto.obrazky[0] : auto.obrazek;
+
                     const htmlKarty = `
                         <div class="car-card">
-                            <img src="${auto.obrazek}" alt="${auto.nazev}">
+                            <img src="${hlavniFotka}" alt="${auto.nazev}">
                             <div class="car-info">
                                 <h3>${auto.nazev}</h3>
                                 <div class="price">${auto.cena}</div>
@@ -66,7 +89,8 @@
                                     <li><i class="fa-solid fa-gauge-high"></i> ${auto.najeto}</li>
                                     <li><i class="fa-solid fa-gas-pump"></i> ${auto.palivo}</li>
                                 </ul>
-                                <a href="#" class="btn btn-primary btn-block">Detail vozu</a>
+                                <!-- TADY JE ZMĚNA 2: Přidali jsme odkaz na detail.html s ID konkrétního auta -->
+                                <a href="detail.html?id=${auto.id}" class="btn btn-primary btn-block">Detail vozu</a>
                             </div>
                         </div>
                     `;

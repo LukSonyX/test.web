@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail vozu | SkyCars Praha</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="index.html" class="logo">
+                <img src="img/logo.png" alt="SkyCars Praha Logo">
+            </a>
+            <nav>
+                <a href="index.html">Domů</a>
+                <a href="vozy.html" class="active">Vozy na Prodej</a>
+                <a href="sluzby.html">Služby</a>
+                <a href="onas.html">O Nás</a>
+                <a href="kontakt.html">Kontakt</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- TADY SE VYKRESLÍ AUTO -->
+        <div class="container" id="detail-content" style="padding: 60px 20px; min-height: 50vh;">
+            <p style="text-align: center; font-size: 18px;">Načítám detail vozu...</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container footer-inner">
+            <div class="footer-col">
+                <h4>Rychlé Odkazy</h4>
+                <ul>
+                    <li><a href="index.html">Domů</a></li>
+                    <li><a href="vozy.html">Vozy na Prodej</a></li>
+                    <li><a href="sluzby.html">Služby</a></li>
+                    <li><a href="onas.html">O Nás</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>SkyCars Praha s.r.o.</h4>
+                <ul class="contact-info">
+                    <li><i class="fa-solid fa-phone"></i> +420 702 798 829</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Korunní 1065/107, Praha</li>
+                    <li><i class="fa-solid fa-envelope"></i> skycars@seznam.cz</li>
+                    <li><i class="fa-solid fa-id-card"></i> IČO: 242 82 634</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>© 2026 SkyCars Praha s.r.o. Všechna práva vyhrazena.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT PRO NAČTENÍ DAT A SLIDER -->
+    <script>
+        let fotkyAktualnihoAuta = [];
+        let aktualniIndexFotky = 0;
+
+        // Funkce pro přepínání fotek
+        function zmenFotku(index) {
+            if (fotkyAktualnihoAuta.length === 0) return;
+            
+            // Ošetření, aby šipky fungovaly pořád dokola (z poslední na první)
+            if (index < 0) index = fotkyAktualnihoAuta.length - 1;
+            if (index >= fotkyAktualnihoAuta.length) index = 0;
+            
+            aktualniIndexFotky = index;
+            document.getElementById('main-image').src = fotkyAktualnihoAuta[aktualniIndexFotky];
+
+            // Zvýraznění aktivního náhledu dole
+            const nahledy = document.querySelectorAll('.thumb');
+            nahledy.forEach((nahled, i) => {
+                if(i === aktualniIndexFotky) {
+                    nahled.style.borderColor = '#007BFF';
+                    nahled.style.opacity = '1';
+                } else {
+                    nahled.style.borderColor = 'transparent';
+                    nahled.style.opacity = '0.5';
+                }
+            });
+        }
+
+        function predchoziFotka() { zmenFotku(aktualniIndexFotky - 1); }
+        function dalsiFotka() { zmenFotku(aktualniIndexFotky + 1); }
+
+        async function nactiDetailVozu() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const carId = urlParams.get('id');
+            const kontejner = document.getElementById('detail-content');
+
+            if (!carId) {
+                kontejner.innerHTML = '<h1 style="text-align:center;">Vůz nenalezen</h1><div style="text-align:center; margin-top:20px;"><a href="vozy.html" class="btn btn-primary">Zpět na nabídku</a></div>';
+                return;
+            }
+
+            try {
+                const response = await fetch('data/auta.json');
+                const auta = await response.json();
+                const auto = auta.find(a => a.id === carId);
+
+                if (!auto) {
+                    kontejner.innerHTML = '<h1 style="text-align:center;">Vůz již není v nabídce</h1><div style="text-align:center; margin-top:20px;"><a href="vozy.html" class="btn btn-primary">Zpět na nabídku</a></div>';
+                    return;
+                }
+
+                // Uložíme si fotky do globální proměnné pro slider
+                fotkyAktualnihoAuta = auto.obrazky && auto.obrazky.length > 0 ? auto.obrazky : [auto.obrazek];
+                const hlavniObrazek = fotkyAktualnihoAuta[0];
+
+                // Generování náhledů (pokud je víc než 1 fotka)
+                let nahledyHtml = '';
+                let sipkyHtml = '';
+                
+                if (fotkyAktualnihoAuta.length > 1) {
+                    sipkyHtml = `
+                        <button class="slider-arrow left-arrow" onclick="predchoziFotka()"><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="slider-arrow right-arrow" onclick="dalsiFotka()"><i class="fa-solid fa-chevron-right"></i></button>
+                    `;
+                    
+                    nahledyHtml = '<div class="gallery-thumbnails">';
+                    fotkyAktualnihoAuta.forEach((imgSrc, index) => {
+                        const activeStyle = index === 0 ? 'border-color: #007BFF; opacity: 1;' : 'opacity: 0.5;';
+                        nahledyHtml += `<img src="${imgSrc}" class="thumb" style="${activeStyle}" onclick="zmenFotku(${index})" alt="Náhled vozu">`;
+                    });
+                    nahledyHtml += '</div>';
+                }
+
+                // Zástupný text popisu (do budoucna to můžeš přidat do admin panelu)
+                const popisVozu = auto.popis || "K tomuto vozu zatím nebyl přidán detailní textový popis. Pokud máte o vůz zájem a chcete znát více podrobností o jeho stavu a výbavě, neváhejte nám zavolat.";
+
+                kontejner.innerHTML = `
+                    <a href="vozy.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Zpět na nabídku</a>
+                    
+                    <div class="car-detail-wrapper">
+                        <!-- LEVÁ ČÁST: FOTOGALERIE -->
+                        <div class="car-detail-gallery">
+                            <div class="main-image-wrapper">
+                                ${sipkyHtml}
+                                <img src="${hlavniObrazek}" id="main-image" class="main-image" alt="${auto.nazev}">
+                            </div>
+                            ${nahledyHtml}
+                        </div>
+
+                        <!-- PRAVÁ ČÁST: RYCHLÉ INFO A KONTAKT -->
+                        <div class="car-detail-info">
+                            <h1>${auto.nazev}</h1>
+                            <div class="price-large">${auto.cena}</div>
+                            
+                            <div class="specs-grid-detail">
+                                <div class="spec-item-detail"><i class="fa-regular fa-calendar"></i><span>Rok výroby:</span> <strong>${auto.rok}</strong></div>
+                                <div class="spec-item-detail"><i class="fa-solid fa-gauge-high"></i><span>Najeto:</span> <strong>${auto.najeto}</strong></div>
+                                <div class="spec-item-detail"><i class="fa-solid fa-gas-pump"></i><span>Palivo:</span> <strong>${auto.palivo}</strong></div>
+                            </div>
+
+                            <div class="contact-box">
+                                <h3>Zaujal vás tento vůz?</h3>
+                                <p>Neváhejte se ozvat. Auto vám rádi ukážeme a domluvíme zkušební jízdu.</p>
+                                <a href="tel:+420702798829" class="btn btn-primary btn-block"><i class="fa-solid fa-phone"></i> Volat: +420 702 798 829</a>
+                                <a href="mailto:skycars@seznam.cz?subject=Zájem o vůz: ${auto.nazev}" class="btn btn-outline btn-block" style="margin-top: 15px;"><i class="fa-solid fa-envelope"></i> Napsat e-mail</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SPODNÍ ČÁST: DETAILNÍ INFORMACE -->
+                    <div class="car-description-section">
+                        <h2>Informace o vozu</h2>
+                        <div class="description-content">
+                            <p>${popisVozu}</p>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                console.error("Chyba:", error);
+                kontejner.innerHTML = '<p style="text-align: center; color: red;">Došlo k chybě při načítání dat.</p>';
+            }
+        }
+
+        nactiDetailVozu();
+    </script>
+</body>
+</html>
