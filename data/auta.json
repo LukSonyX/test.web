@@ -21,5 +21,17 @@
       "img/auta/1778003955181_2.jpg",
       "img/auta/1778003955181_3.jpg"
     ]
+  },
+  {
+    "id": "1778004293656",
+    "nazev": "Škoda Superb",
+    "cena": "890 000 Kč",
+    "rok": "2016",
+    "najeto": "120 000 km",
+    "palivo": "Nafta",
+    "obrazky": [
+      "img/auta/1778004293656_0.jpg",
+      "img/auta/1778004293656_1.jpg"
+    ]
   }
 ]
