@@ -33,5 +33,18 @@
       "img/auta/1778004293656_0.jpg",
       "img/auta/1778004293656_1.jpg"
     ]
+  },
+  {
+    "id": "1778004409607",
+    "nazev": "Volvo XC60",
+    "cena": "1 800 000 Kč",
+    "rok": "2023",
+    "najeto": "30 500 km",
+    "palivo": "Benzín",
+    "obrazky": [
+      "img/auta/1778004409607_0.jpg",
+      "img/auta/1778004409607_1.jpg",
+      "img/auta/1778004409607_2.jpg"
+    ]
   }
 ]
