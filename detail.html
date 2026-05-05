@@ -140,20 +140,25 @@
                     <a href="vozy.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Zpět na nabídku</a>
                     
                     <div class="car-detail-wrapper">
-                        <!-- LEVÁ ČÁST: FOTOGALERIE -->
-                        <div class="car-detail-gallery">
-                            <div class="main-image-wrapper">
-                                ${sipkyHtml}
-                                <img src="${hlavniObrazek}" id="main-image" class="main-image" alt="${auto.nazev}">
+                        <!-- LEVÁ ČÁST: FOTOGALERIE + NÁZEV A CENA -->
+                        <div class="car-detail-left">
+                            <div class="car-detail-gallery">
+                                <div class="main-image-wrapper">
+                                    ${sipkyHtml}
+                                    <img src="${hlavniObrazek}" id="main-image" class="main-image" alt="${auto.nazev}">
+                                </div>
+                                ${nahledyHtml}
                             </div>
-                            ${nahledyHtml}
+                            
+                            <!-- PŘESUNUTÝ NÁZEV A CENA -->
+                            <div class="title-price-section">
+                                <h1>${auto.nazev}</h1>
+                                <div class="price-large">${auto.cena}</div>
+                            </div>
                         </div>
 
-                        <!-- PRAVÁ ČÁST: RYCHLÉ INFO A KONTAKT -->
+                        <!-- PRAVÁ ČÁST: SPECIFIKACE A KONTAKT -->
                         <div class="car-detail-info">
-                            <h1>${auto.nazev}</h1>
-                            <div class="price-large">${auto.cena}</div>
-                            
                             <div class="specs-grid-detail">
                                 <div class="spec-item-detail"><i class="fa-regular fa-calendar"></i><span>Rok výroby:</span> <strong>${auto.rok}</strong></div>
                                 <div class="spec-item-detail"><i class="fa-solid fa-gauge-high"></i><span>Najeto:</span> <strong>${auto.najeto}</strong></div>
