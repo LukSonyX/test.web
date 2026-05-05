@@ -7,5 +7,19 @@
     "najeto": "32 000 km",
     "palivo": "Benzín",
     "obrazek": "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    "id": "1778003955181",
+    "nazev": "BMW M3",
+    "cena": "2 500 000 Kč",
+    "rok": "2020",
+    "najeto": "30 000 km",
+    "palivo": "Benzín",
+    "obrazky": [
+      "img/auta/1778003955181_0.jpg",
+      "img/auta/1778003955181_1.jpg",
+      "img/auta/1778003955181_2.jpg",
+      "img/auta/1778003955181_3.jpg"
+    ]
   }
 ]
